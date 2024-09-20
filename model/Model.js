@@ -3,6 +3,7 @@ import { WINNING_COMBINATIONS } from "./winningCombinations.js";
 class Model {
   #gameState;
   #roundCount;
+
   constructor() {
     this.#roundCount = 0;
     this.#gameState = [

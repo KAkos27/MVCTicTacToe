@@ -4,6 +4,7 @@ import GameBoard from "../view/GameBoard.js";
 class Controller {
   #gameBoard;
   #MODEL;
+
   constructor() {
     this.#MODEL = new Model();
     this.#gameBoard = $(".game-board");

@@ -4,6 +4,7 @@ class GameBoard {
   #parent;
   #size;
   #gameState;
+
   constructor(parent, gameState) {
     this.#parent = parent;
     this.#size = 3;
