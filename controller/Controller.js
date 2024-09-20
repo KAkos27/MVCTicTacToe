@@ -7,20 +7,22 @@ class Controller {
   constructor() {
     this.#MODEL = new Model();
     this.#gameBoard = $(".game-board");
-    new GameBoard(this.#gameBoard, 9, this.#MODEL.getGameState());
+    new GameBoard(this.#gameBoard, this.#MODEL.getGameState());
     this.onSelect();
   }
 
   onSelect = () => {
     $(window).on("custom-select", (event) => {
-      this.#MODEL.setGameState(event.detail);
+      this.#MODEL.setGameState(event.detail.row, event.detail.col);
 
       let rounCount = this.#MODEL.getRoundCount();
       rounCount++;
 
       this.#MODEL.setRoundCount(rounCount);
 
-      new GameBoard(this.#gameBoard, 9, this.#MODEL.getGameState());
+      new GameBoard(this.#gameBoard, this.#MODEL.getGameState());
+
+      this.#MODEL.checkForWinner();
     });
   };
 }

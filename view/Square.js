@@ -1,12 +1,14 @@
 class Square {
   #parent;
   #suare;
-  #index;
+  #row;
+  #col;
   #icon;
 
-  constructor(parent, index, icon) {
+  constructor(parent, row, col, icon) {
     this.#parent = parent;
-    this.#index = index;
+    this.#row = row;
+    this.#col = col;
     this.#icon = icon;
     this.displaySquare();
     this.#suare = $(".custom-select:last");
@@ -20,7 +22,9 @@ class Square {
 
   eventListener = () => {
     this.#suare.on("click", () => {
-      const e = new CustomEvent("custom-select", { detail: this.#index });
+      const e = new CustomEvent("custom-select", {
+        detail: { row: this.#row, col: this.#col },
+      });
 
       window.dispatchEvent(e);
     });
