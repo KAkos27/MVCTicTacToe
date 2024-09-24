@@ -30,8 +30,6 @@ class Model {
   };
 
   checkForWinner = () => {
-    let winner;
-
     for (const combination of WINNING_COMBINATIONS) {
       const firstSquareSymbol =
         this.#gameState[combination[0].row][combination[0].column];
@@ -49,7 +47,7 @@ class Model {
       }
     }
 
-    this.#hasDraw = this.#roundCount === 9 && !winner;
+    this.#hasDraw = this.#roundCount === 9 && !this.#winner;
   };
 
   getWinner = () => this.#winner;
