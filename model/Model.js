@@ -3,6 +3,8 @@ import { WINNING_COMBINATIONS } from "./winningCombinations.js";
 class Model {
   #gameState;
   #roundCount;
+  #winner;
+  #hasDraw;
 
   constructor() {
     this.#roundCount = 0;
@@ -11,6 +13,8 @@ class Model {
       ["", "", ""],
       ["", "", ""],
     ];
+    this.#winner = null;
+    this.#hasDraw = false;
   }
 
   getGameState = () => this.#gameState;
@@ -43,25 +47,16 @@ class Model {
         firstSquareSymbol === secondSquareSymbol &&
         firstSquareSymbol === thirdSquareSymbol
       ) {
-        winner = firstSquareSymbol;
-
-        setTimeout(() => {
-          alert(`${winner} nyert!`);
-        }, 1);
-
-        location.reload();
+        this.#winner = firstSquareSymbol;
       }
     }
 
-    const hasDraw = this.#roundCount === 9 && !winner;
-    if (hasDraw) {
-      setTimeout(() => {
-        alert("Döntetlten");
-      }, 1);
-
-      location.reload();
-    }
+    this.#hasDraw = this.#roundCount === 9 && !winner;
   };
+
+  getWinner = () => this.#winner;
+
+  getHasDraw = () => this.#hasDraw;
 }
 
 export default Model;
