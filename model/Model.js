@@ -25,10 +25,8 @@ class Model {
     }
   };
 
-  getRoundCount = () => this.#roundCount;
-
-  setRoundCount = (rounCount) => {
-    this.#roundCount = rounCount;
+  setRoundCount = () => {
+    this.#roundCount++;
   };
 
   checkForWinner = () => {

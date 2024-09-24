@@ -20,6 +20,8 @@ class GameBoard {
       }
     }
   };
+
+  getGameState = () => this.#gameState;
 }
 
 export default GameBoard;

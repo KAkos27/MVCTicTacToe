@@ -22,16 +22,18 @@ class Controller {
 
   onSelect = () => {
     $(window).on("custom-select", (event) => {
-      this.#MODEL.setGameState(event.detail.row, event.detail.col);
+      const gameState = this.#MODEL.getGameState();
+      const row = event.detail.row;
+      const col = event.detail.col;
 
-      let rounCount = this.#MODEL.getRoundCount();
-      rounCount++;
-      this.#MODEL.setRoundCount(rounCount);
+      if (!gameState[row][col]) {
+        this.#MODEL.setGameState(row, col);
+        this.#MODEL.setRoundCount();
+      }
 
       new GameBoard(this.#gameBoard, this.#MODEL.getGameState());
 
       this.#MODEL.checkForWinner();
-
       const winner = this.#MODEL.getWinner();
       const hasDraw = this.#MODEL.getHasDraw();
 
